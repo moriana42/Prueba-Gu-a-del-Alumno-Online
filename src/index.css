@@ -16,22 +16,39 @@
   --color-brand-800: #003d99;
   --color-brand-900: #002966;
 
-  --color-surface-bg: #f0f7ff;
-  --color-surface-border: #cce4ff;
+  --color-surface-bg: #f8fbff;
+  --color-surface-border: #e2e8f0;
+
+  /* Dark mode overrides */
+  --color-dark-bg: #0f172a;
+  --color-dark-surface: #1e293b;
+  --color-dark-border: #334155;
+  --color-dark-text: #f1f5f9;
 }
 
 @layer base {
   body {
-    @apply font-sans text-slate-800 antialiased bg-surface-bg bg-fixed;
-    background-image: linear-gradient(135deg, #f0f7ff 0%, #e0f0ff 100%);
+    @apply font-sans text-slate-800 antialiased bg-slate-50 transition-colors duration-300;
+  }
+  
+  .dark body {
+    @apply bg-slate-950 text-slate-100;
+  }
+
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .animate-spin-slow {
+    animation: spin-slow 8s linear infinite;
   }
 }
 
-.markdown-content h1 { @apply text-3xl font-bold mb-6 text-brand-700 drop-shadow-sm; }
-.markdown-content h2 { @apply text-2xl font-bold mt-12 mb-6 text-brand-600 border-b-2 border-brand-100 pb-2; }
-.markdown-content h3 { @apply text-xl font-bold mt-10 mb-4 text-brand-800 bg-brand-50/50 inline-block px-3 py-1 rounded-lg; }
-.markdown-content p { @apply text-slate-700 leading-relaxed mb-5 text-[16px]; }
-.markdown-content b, .markdown-content strong { @apply text-brand-700 font-bold; }
-.markdown-content ul { @apply list-disc list-outside mb-6 ml-6 space-y-3 text-slate-700; }
+.markdown-content h1 { @apply text-3xl font-bold mb-6 text-brand-700 dark:text-brand-400 drop-shadow-sm; }
+.markdown-content h2 { @apply text-2xl font-bold mt-12 mb-6 text-brand-600 dark:text-brand-500 border-b-2 border-brand-100 dark:border-brand-900 pb-2; }
+.markdown-content h3 { @apply text-xl font-bold mt-10 mb-4 text-brand-800 dark:text-brand-300 bg-brand-50/50 dark:bg-brand-900/30 inline-block px-3 py-1 rounded-lg; }
+.markdown-content p { @apply text-slate-700 dark:text-slate-300 leading-relaxed mb-5 text-[16px]; }
+.markdown-content b, .markdown-content strong { @apply text-brand-700 dark:text-brand-400 font-bold; }
+.markdown-content ul { @apply list-disc list-outside mb-6 ml-6 space-y-3 text-slate-700 dark:text-slate-300; }
 .markdown-content li { @apply marker:text-brand-500 pl-2 text-[15px]; }
-.markdown-content blockquote { @apply border-l-4 border-brand-400 bg-brand-100/30 px-6 py-5 italic my-8 rounded-r-2xl text-brand-900 text-[15px] shadow-sm; }
+.markdown-content blockquote { @apply border-l-4 border-brand-400 bg-brand-100/30 dark:bg-brand-900/20 px-6 py-5 italic my-8 rounded-r-2xl text-brand-900 dark:text-brand-100 text-[15px] shadow-sm; }
